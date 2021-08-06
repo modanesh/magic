@@ -39,7 +39,7 @@ if __name__ == '__main__':
         else:
             gen_model = MAGICGenNet(CONTEXT_SIZE, PARTICLE_SIZE, CONTEXT_DEPENDENT, BELIEF_DEPENDENT).to(device).float()
         if model_path is not None:
-            gen_model.load_state_dict(torch.load(model_path))
+            gen_model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         gen_model.eval()
 
         env = Environment(TASK, MACRO_LENGTH, True)
